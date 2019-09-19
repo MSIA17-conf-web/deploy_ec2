@@ -8,7 +8,7 @@ pipeline {
     parameters {
         booleanParam(name: 'Refresh', defaultValue: false, description: 'Read Jenkinsfile and exit.')
         choice(choices: ['CREATE', 'DESTROY'], description: 'Create a EC2 instance or destroy one?', name: 'Action')
-        string(description: 'Create a deployment ID. You will need this later to destroy instances.', name: 'deploymentID', defaultValue: 'neito-k8s-cluster')
+        string(description: 'Create a deployment ID. You will need this later to destroy instances.', name: 'deploymentID', defaultValue: 'neito-ec2')
         choice(choices: ['yes', 'no'], name: 'destroyAtStart', description: 'if CREATE, do you want to destroy previous instance with the given deploymentID first ?')
         string(description: 'Pick the size of the EC2 instance', name: 'EC2Size', defaultValue: 't2.micro')
     }

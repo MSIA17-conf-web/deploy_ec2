@@ -14,7 +14,7 @@ resource "aws_instance" "custom_ec2" {
     associate_public_ip_address = "true"
     subnet_id = "${element(var.subnet_ids, count.index)}"
     vpc_security_group_ids = ["${aws_security_group.neito_security_group.id}"]
-    root_block_device = ["${var.master_root_block_device}"]
+    root_block_device = ["${var.ec2_root_block_device}"]
     user_data = "${data.template_file.ec2_cloud_init.rendered}"
 }
 
