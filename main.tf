@@ -6,6 +6,11 @@ data "template_file" "ec2_cloud_init" {
   }
 }
 
+# resource "aws_key_pair" "ssh_key" {
+#   key_name   = "ssh_try"
+#   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCx/kj1woWWfGBCHJv6/73AuT9YCYsTtVuM+Awrl5QY0yBuHesRyK5jdmgHeL6vhUt4zauBGSH1OPNyOV/qtP+vIfiWPcrXBejP4txW8x9hBN17kxqOKZF5H6iMpuCesX+xchd+lGEIvhAlAfduaaeQsd17Iygb0DTtV0AuYVLNiNamO9xe5dptNPbHQTLpTwGzjvq/QDkojM6oE1jfKxbhMdUI5BNMtL1CKQTBnFOEoj6UGpSTocoxITgeCHZba4IiidJi0g8xMoChU6mQjgtjVlgdzx1MP4H16WrlcYipoAoQfP9043ybhUZ/IvPemHc5AWDcPH9CId4vsKD+Dtl1"
+# }
+
 resource "aws_instance" "custom_ec2" {
     count = 1
     ami = "ami-0f2b4fc905b0bd1f1"  
@@ -16,6 +21,7 @@ resource "aws_instance" "custom_ec2" {
     vpc_security_group_ids = ["${aws_security_group.neito_security_group.id}"]
     root_block_device = ["${var.ec2_root_block_device}"]
     user_data = "${data.template_file.ec2_cloud_init.rendered}"
+    key_name = "ssh_try"
 }
 
 resource "aws_security_group" "neito_security_group" {
