@@ -12,7 +12,7 @@ variable "deploymentID" {
 variable "vpc_id" {
   type = "string"
   description = "The ID of the VPC you are creating the security group in."
-  default = "vpc-1432726e"
+  default = "vpc-e37f9d88"
 }
 
 variable "ec2_root_block_device" {
@@ -28,5 +28,5 @@ variable "ec2_root_block_device" {
 variable "subnet_ids" {
   type = "list"
   description = "A list of subnets to deploy into. Instances will be spread over them reasonably evenly."
-  default = [ "subnet-724c7815" ]
+  default = [ "subnet-0251446a" ]
 }
