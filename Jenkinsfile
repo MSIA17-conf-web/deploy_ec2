@@ -41,8 +41,7 @@ pipeline {
                         dir("${workspace}"){
                             sh "ls && pwd"
                             sh """
-                            cp pipeline/* . \
-                            && terraform init \
+                            terraform init \
                             -backend-config="region=us-east-2" \
                             -backend-config="aws_credentials=${env.AWS_CREDENTIALS}" 
                             """      
