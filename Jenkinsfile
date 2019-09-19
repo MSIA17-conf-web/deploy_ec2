@@ -15,7 +15,9 @@ pipeline {
 
     environment {
         PATH = "${workspace}:$PATH"
-        AWS_CREDENTIALS = credentials("AWS_API_USER")
+        aws_secret_id = credentials("aws_secret_id")
+        aws_secret_key = credentials("aws_secret_key")
+
     }
 
     stages {
@@ -43,7 +45,8 @@ pipeline {
                             sh """
                             terraform init \
                             -backend-config="region=us-east-2" \
-                            -backend-config="aws_credentials=${env.AWS_CREDENTIALS}" 
+                            -backend-config="aws_secret_id=${env.aws_secret_id}" \
+                            -backend-config="aws_secret_key=${env.aws_secret_key}" 
                             """      
                         }
                     }
@@ -58,7 +61,8 @@ pipeline {
                                 -force \
                                 -var "EC2Size=${params.EC2Size}" \
                                 -var "deploymentID=${params.deploymentID}" \
-                                -var "AWS_CREDENTIALS=${env.AWS_CREDENTIALS}" \
+                                -var "aws_secret_id=${env.aws_secret_id}" \
+                                -var "aws_secret_key=${env.aws_secret_key}"
                             """      
                         }
                     }
@@ -73,7 +77,8 @@ pipeline {
                                 -force \
                                 -var "EC2Size=${params.EC2Size}" \
                                 -var "deploymentID=${params.deploymentID}" \
-                                -var "AWS_CREDENTIALS=${env.AWS_CREDENTIALS}" \
+                                -var "aws_secret_id=${env.aws_secret_id}" \
+                                -var "aws_secret_key=${env.aws_secret_key}"
                             """      
                         }
                     }
@@ -88,7 +93,8 @@ pipeline {
                                 -auto-approve \
                                 -var "EC2Size=${params.EC2Size}" \
                                 -var "deploymentID=${params.deploymentID}" \
-                                -var "AWS_CREDENTIALS=${env.AWS_CREDENTIALS}" \
+                                -var "aws_secret_id=${env.aws_secret_id}" \
+                                -var "aws_secret_key=${env.aws_secret_key}"
                             """
                         }
                     }
