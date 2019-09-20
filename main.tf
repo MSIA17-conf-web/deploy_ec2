@@ -79,3 +79,11 @@ resource "aws_security_group_rule" "9001_ingress" {
   security_group_id = "${aws_security_group.neito_security_group.id}"
   description = "Enables Jenkins"
 }
+
+resource "aws_security_group_rule" "internet_outbound" {
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  security_group_id = "${aws_security_group.neito_security_group.id}"
+}
