@@ -86,5 +86,5 @@ resource "aws_security_group_rule" "internet_outbound" {
   to_port           = 0
   protocol          = "-1"
   security_group_id = "${aws_security_group.neito_security_group.id}"
-  self              = true
+  cidr_blocks = ["0.0.0.0/0"]
 }
