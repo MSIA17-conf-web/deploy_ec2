@@ -41,5 +41,6 @@ runcmd:
 - update-ca-trust
 - systemctl enable docker
 - systemctl start docker
+- docker network create the_network
 
 output : { all : '| tee -a /var/log/cloud-init-runcmd.log' }
